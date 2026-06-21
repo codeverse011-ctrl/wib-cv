@@ -1,0 +1,517 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <title>Pricing Plans</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #e5e7eb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #f9fafb;
+    }
+
+    .header p {
+      font-size: 1rem;
+      color: #9ca3af;
+    }
+
+    .pricing-grid {
+  display: grid;
+  gap: 20px;
+}
+
+/* Mobile: 1 column */
+@media (max-width: 600px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 601px) and (max-width: 1023px) {
+  .pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: 3 columns, 5th item center in 2nd row */
+@media (min-width: 1024px) {
+  .pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .pricing-grid > .card:nth-child(5) {
+    grid-column: 2;
+  }
+}
+
+
+
+    .card {
+      background: #111827;
+      border-radius: 16px;
+      padding: 24px 20px;
+      border: 1px solid #1f2937;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #4f46e5;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.7);
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #f9fafb;
+    }
+
+    .card-subtitle {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin-bottom: 16px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .price-label {
+      font-size: 0.95rem;
+      color: #9ca3af;
+    }
+
+    .price-value {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #a5b4fc;
+    }
+
+    .divider {
+      border-top: 1px solid #1f2937;
+      margin: 16px 0;
+    }
+
+    .features {
+      list-style: none;
+      font-size: 0.9rem;
+      color: #d1d5db;
+      margin-bottom: 20px;
+    }
+
+    .features li {
+      margin-bottom: 6px;
+    }
+
+    .btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, #4f46e5, #06b6d4);
+      color: white;
+      text-decoration: none;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #4f46e5;
+      color: #e5e7eb;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #4f46e5;
+      color: #e5e7eb;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 2rem;
+      }
+    }
+    
+    
+    
+    
+    #particle-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.rgb-title {
+  animation: rgbBlink 2s linear infinite;
+}
+
+@keyframes rgbBlink {
+  0% {
+    color: #ff0000; /* red */
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+  }
+  33% {
+    color: #00ff00; /* green */
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+  }
+  66% {
+    color: #00bfff; /* blue-ish */
+    text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
+  }
+  100% {
+    color: #ff0000; /* back to red */
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+  }
+}
+
+
+
+
+    
+    
+    
+    
+  </style>
+</head>
+
+<!-- Contact Popup -->
+<body><div id="contactPopup" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); 
+            justify-content:center; align-items:center; z-index:9999;">
+  <div style="background:#1f2937; padding:20px 24px; border-radius:12px; width:280px; text-align:center;">
+    <h3 style="color:#fff; margin-bottom:15px;">Choose contact method</h3>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/01969006254" style="display:block; margin-bottom:10px; padding:10px;
+              background:#25D366; color:#fff; text-decoration:none;
+              border-radius:8px; font-weight:bold;">
+      Message on WhatsApp
+    </a>
+
+    <!-- Discord -->
+    <a href="https://discord.gg/aVP3WXDDhk" style="display:block; padding:10px;
+              background:#5865F2; color:#fff; text-decoration:none;
+              border-radius:8px; font-weight:bold;">
+      Open Discord
+    </a>
+
+    <button onclick="closePopup()" style="margin-top:15px; width:100%; padding:8px;
+                   background:#374151; color:#fff; border:none;
+                   border-radius:6px; cursor:pointer;">
+      Cancel
+    </button>
+  </div>
+</div>
+
+<script>
+  function openPopup() {
+    document.getElementById("contactPopup").style.display = "flex";
+  }
+  function closePopup() {
+    document.getElementById("contactPopup").style.display = "none";
+  }
+</script>
+
+
+    
+    <canvas id="particle-canvas"></canvas>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1 class="rgb-title">CODE-VERSE</h1>
+      <p> All Are 101% Main Id Safe . Only For Pc </p>
+    </div>
+
+    <!-- Pricing Cards -->
+    <div class="pricing-grid">
+
+      <!-- Plan 1 (tumi ekhane "Aimbot Panel" likhte paro) -->
+      <div class="card">
+        <div class="card-title">Aimbot Panel</div>
+        <div class="card-subtitle">Only For Headshot</div>
+
+        <div class="price-row">
+          <span class="price-label">Lifetime</span>
+          <span class="price-value">$10 / 1000tk</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label">Per 1 ob Update</span>
+          <span class="price-value">$6 / 600tk</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <ul class="features">
+          <li>✔ 85%-90% Head Rate</li>
+          <li>✔ Enemy Location</li>
+          <li>✔ Key Bind System</li>
+        </ul>
+
+        <button onclick="openPopup()" class="btn btn-outline">Choose Plan</button>
+
+      </div>
+
+      <!-- Plan 2 (tumi ekhane "Premium Panel" likhte paro) -->
+      <div class="card">
+        
+        <div class="card-title">Premium Panel</div>
+        <span class="badge">Popular</span>
+        <div class="card-subtitle">For All Function</div>
+        
+        <div class="price-row">
+          <span class="price-label">Lifetime</span>
+          <span class="price-value">$20 / 2000tk</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label">Per 1 ob Update</span>
+          <span class="price-value">$10 / 1000tk</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <ul class="features">
+          <li>✔ Headshot</li>
+          <li>✔ Sniper Function</li>
+          <li>✔ Wall / Speed / Fly / Camera</li>
+          
+        </ul>
+
+        <button onclick="openPopup()" class="btn btn-outline">Choose Plan</button>
+
+      </div>
+
+      <!-- Plan 5 (tumi ekhane "Sniper Panel" likhte paro) -->
+      <div class="card">
+        <div class="card-title">Sniper Panel</div>
+        <div class="card-subtitle">Only Sniper Function</div>
+
+        <div class="price-row">
+          <span class="price-label">Lifetime</span>
+          <span class="price-value">$18 / 1800</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label">Per 1 Ob Update </span>
+          <span class="price-value">$9 / 900tk</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <ul class="features">
+          <li>✔ Sniper Scope</li>
+          <li>✔ Sniper Switch</li>
+          <li>✔ LocationMenu </li>
+        </ul>
+
+        <button onclick="openPopup()" class="btn btn-outline">Choose Plan</button>
+
+      </div>
+
+      <!-- Plan 4 (tumi ekhane "Sniper Panel" likhte paro) -->
+      <div class="card">
+        <div class="card-title">Bypass Panel</div>
+        <div class="card-subtitle">Emulator Hide</div>
+
+        <div class="price-row">
+          <span class="price-label">Per 1 ob Update</span>
+          <span class="price-value">$10 / 1000tk</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label">1 Month </span>
+          <span class="price-value">$5 / 500tk</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <ul class="features">
+          <li>✔ Emulator Bypass</li>
+          <li>✔ Pc To Mobile Convert</li>
+          <li>✔ Remove Hacker </li>
+        </ul>
+
+        <button onclick="openPopup()" class="btn btn-outline">Choose Plan</button>
+
+      </div>
+      
+      
+      
+      
+       <!-- Plan 3 (tumi ekhane "Streamer Panel" likhte paro) -->
+      <div class="card">
+        <div class="card-title">Streamer Panel</div>
+        <div class="card-subtitle">For Tournament Player</div>
+
+        <div class="price-row">
+          <span class="price-label">Lifetime</span>
+          <span class="price-value">$35 / 3500tk</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label">Per 1 ob Update</span>
+          <span class="price-value">$15 / 1500tk</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <ul class="features">
+          <li>✔ Control From Mobile</li>
+          <li>✔ 90% Head Rate</li>
+          <li>✔ Streamer Esp / Hide from pc</li>
+        </ul>
+
+        <button onclick="openPopup()" class="btn btn-outline">Choose Plan</button>
+      
+      </div>
+      
+      <!-- Plan 4 (tumi ekhane "Sniper Panel" likhte paro) -->
+      <div class="card">
+        <div class="card-title">Aimbot + Bypass </div>
+        <div class="card-subtitle">Emulator Hide + Headshot</div>
+
+        <div class="price-row">
+          <span class="price-label">Per 1 ob Update</span>
+          <span class="price-value">$16 / 1600tk</span>
+        </div>
+        <div class="price-row">
+          <span class="price-label">1 Month </span>
+          <span class="price-value">$8 / 800tk</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <ul class="features">
+          <li>✔ Headshot + location</li>
+          <li>✔ Pc To Mobile Convert</li>
+          <li>✔ Remove Hacker </li>
+        </ul>
+
+        <button onclick="openPopup()" class="btn btn-outline">Choose Plan</button>
+            
+      
+      <script>
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+
+  let particles = [];
+  const particleCount = 80;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  function createParticles() {
+    particles = [];
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 1,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+      });
+    }
+  }
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // dots
+    for (let p of particles) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(148, 163, 184, 0.7)'; // halka grey-ish
+      ctx.fill();
+    }
+
+    // lines
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const p1 = particles[i];
+        const p2 = particles[j];
+        const dx = p1.x - p2.x;
+        const dy = p1.y - p2.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = 'rgba(148, 163, 184, 0.2)';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function updateParticles() {
+    for (let p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+    }
+  }
+
+  function animate() {
+    updateParticles();
+    drawParticles();
+    requestAnimationFrame(animate);
+  }
+
+  createParticles();
+  animate();
+</script>
+
+
+    </div>
+  </div>
+
+
+</div></body></html>
